@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
 }
 
 .App-logo {
@@ -35,4 +34,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Nav.css */
+.custom-toggler {
+  background-color: lightslategrey; /* Replace with your desired color */
 }

@@ -51,9 +51,18 @@ const NavBar = () => {
                   Logout
                 </Link>
               ) : (
-                <Link className="nav-link text-white" to="/signup">
-                  Sign-Up
-                </Link>
+                <ul className="navbar-nav ml-auto">
+                  <li className="nav-item">
+                    <Link className="nav-link text-white" to="/signup">
+                      Sign-Up
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link text-white" to="/login">
+                      Login
+                    </Link>
+                  </li>
+                </ul>
               )}
             </li>
             <li className="nav-item">
@@ -61,7 +70,6 @@ const NavBar = () => {
                 Profile
               </Link>
             </li>
-            <li className="nav-item"></li>
           </ul>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import AddProduct from "./Components/AddProduct";
 import LogOut from "./Components/LogOut";
+import Login from "./Components/Login";
 import Product from "./Components/Product";
 import Profile from "./Components/Profile";
 import SignUp from "./Components/SignUp";
@@ -20,6 +21,7 @@ function App() {
           <Route path="logout" element={<LogOut />} />
 
           <Routes path="/signup" element={<SignUp />} />
+          <Routes path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -2,6 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
+  const auth = localStorage.getItem("user");
+  const logout = () => {
+    localStorage.removeItem("user");
+  };
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-dark">
       <div className="container-fluid">
@@ -36,21 +40,28 @@ const NavBar = () => {
                 Update Product
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link text-white" to="/logout">
-                Logout
-              </Link>
+            <li>
+              {" "}
+              {auth ? (
+                <Link
+                  className="nav-link text-white"
+                  to="/logout"
+                  onClick={() => logout()}
+                >
+                  Logout
+                </Link>
+              ) : (
+                <Link className="nav-link text-white" to="/signup">
+                  Sign-Up
+                </Link>
+              )}
             </li>
             <li className="nav-item">
               <Link className="nav-link text-white" to="/profile">
                 Profile
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link text-white" to="/signup">
-                Sign-Up
-              </Link>
-            </li>
+            <li className="nav-item"></li>
           </ul>
         </div>
       </div>

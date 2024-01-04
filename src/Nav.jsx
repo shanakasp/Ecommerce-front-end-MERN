@@ -6,6 +6,7 @@ const NavBar = () => {
   const logout = () => {
     localStorage.removeItem("user");
   };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-dark">
       <div className="container-fluid">
@@ -25,51 +26,57 @@ const NavBar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link className="nav-link text-white" to="/">
-                Products
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-white" to="/add">
-                Add Product
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-white" to="/update">
-                Update Product
-              </Link>
-            </li>
-            <li>
-              {" "}
-              {auth ? (
-                <Link
-                  className="nav-link text-white"
-                  to="/logout"
-                  onClick={() => logout()}
-                >
-                  Logout
-                </Link>
-              ) : (
-                <ul className="navbar-nav ml-auto">
-                  <li className="nav-item">
-                    <Link className="nav-link text-white" to="/signup">
-                      Sign-Up
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link text-white" to="/login">
-                      Login
-                    </Link>
-                  </li>
+            {auth ? (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link text-white" to="/">
+                    Products
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link text-white" to="/add">
+                    Add Product
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link text-white" to="/update">
+                    Update Product
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link text-white"
+                    to="/logout"
+                    onClick={() => logout()}
+                  >
+                    Logout
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link text-white" to="/profile">
+                    Profile
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                {" "}
+                <ul>
+                  <div className="nav-right d-flex justify-content-end">
+                    <li className="nav-item">
+                      <Link className="nav-link text-white" to="/signup">
+                        Sign-Up
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link className="nav-link text-white" to="/login">
+                        Login
+                      </Link>
+                    </li>
+                  </div>
                 </ul>
-              )}
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-white" to="/profile">
-                Profile
-              </Link>
-            </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

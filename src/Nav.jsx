@@ -44,17 +44,17 @@ const NavBar = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
+                  <Link className="nav-link text-white" to="/profile">
+                    Profile
+                  </Link>
+                </li>
+                <li className="nav-item">
                   <Link
                     className="nav-link text-white"
                     to="/logout"
                     onClick={() => logout()}
                   >
-                    Logout
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link text-white" to="/profile">
-                    Profile
+                    Logout ({JSON.parse(auth).email})
                   </Link>
                 </li>
               </>

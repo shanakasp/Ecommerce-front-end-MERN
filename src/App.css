@@ -43,3 +43,9 @@
   text-align: right;
   float: right;
 }
+
+.invalid-input {
+  font-size: small;
+  color: red;
+  margin-top: 20px;
+}

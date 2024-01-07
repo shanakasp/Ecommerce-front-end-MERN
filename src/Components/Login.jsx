@@ -14,27 +14,27 @@ function Login() {
     e.preventDefault();
 
     try {
-      // Show loading state or disable the submit button
       setLoading(true);
 
-      const result = await axios.post("http://localhost:5000/login", {
+      const response = await axios.post("http://localhost:5000/login", {
         email,
         password,
       });
 
-      console.log(result);
+      const { _id: userId, name, email: userEmail } = response.data;
 
-      // Save user information to local storage
-      localStorage.setItem("user", JSON.stringify({ email, password }));
+      // Save user information, including userId, to local storage
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ userId, name, email: userEmail })
+      );
 
       // Redirect to the home page
       navigate("/");
     } catch (error) {
-      // Handle login error
       console.error("Login failed:", error);
-      setError("Login failed. Please try again."); // Set error state
+      setError("Login failed. Please try again.");
     } finally {
-      // Reset loading state or enable the submit button
       setLoading(false);
     }
   };

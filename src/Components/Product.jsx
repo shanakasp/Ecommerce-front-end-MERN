@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import React, { useEffect, useState } from "react";
 import NavBar from "../Nav";
 import "./ProductList.css"; // Import your CSS file
@@ -8,6 +9,22 @@ const ProductList = () => {
   useEffect(() => {
     getProducts();
   }, []);
+
+  const deleteProduct = async (id) => {
+    try {
+      console.warn(id);
+      const result = await fetch(`http://localhost:5000/product/${id}`, {
+        method: "DELETE",
+      });
+      const data = await result.json();
+      if (data) {
+        alert("Deleted Successfully");
+        getProducts(); // Refresh the product list after deletion
+      }
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
+  };
 
   const getProducts = async () => {
     try {
@@ -27,7 +44,7 @@ const ProductList = () => {
       <div className="product-list-container">
         <h2>Product List</h2>
         {products.length > 0 ? (
-          <table className="product-table">
+          <table className="table table-bordered product-table">
             <thead>
               <tr>
                 <th>Product name</th>
@@ -35,6 +52,7 @@ const ProductList = () => {
                 <th>Product category</th>
                 <th>Product company</th>
                 <th>Product listed by</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -45,6 +63,14 @@ const ProductList = () => {
                   <td>{product.category}</td>
                   <td>{product.company}</td>
                   <td>{product.userId}</td>
+                  <td>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => deleteProduct(product._id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>

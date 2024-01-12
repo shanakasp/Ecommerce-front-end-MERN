@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../Nav";
+import "./ProductList.css"; // Import your CSS file
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -23,15 +24,35 @@ const ProductList = () => {
   return (
     <div>
       <NavBar />
-      <h2>Product List</h2>
-      <ul>
-        {products.map((product) => (
-          <li key={product._id}>
-            {product.name} - {product.price} - {product.category} -{" "}
-            {product.company} - UserId: {product.userId}
-          </li>
-        ))}
-      </ul>
+      <div className="product-list-container">
+        <h2>Product List</h2>
+        {products.length > 0 ? (
+          <table className="product-table">
+            <thead>
+              <tr>
+                <th>Product name</th>
+                <th>Product price</th>
+                <th>Product category</th>
+                <th>Product company</th>
+                <th>Product listed by</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((product) => (
+                <tr key={product._id}>
+                  <td>{product.name}</td>
+                  <td>{product.price}</td>
+                  <td>{product.category}</td>
+                  <td>{product.company}</td>
+                  <td>{product.userId}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>No products available</p>
+        )}
+      </div>
     </div>
   );
 };

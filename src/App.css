@@ -61,3 +61,30 @@
   border: 1px solid gray;
   padding: 5px;
 }
+
+/* App.css */
+/* App.css */
+.container {
+  margin-top: 50px;
+  margin-left: 50px;
+  border: 1px solid #ccc; /* Add additional styles as needed */
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+/* App.css */
+.custom-datepicker-input {
+  color: red; /* Change the color of the calendar numbers */
+  /* Add any other styles you want */
+}
+/* App.css */
+.custom-selected-day {
+  color: red; /* Change the text color of selected dates */
+  /* Add any other styles you want */
+}
+
+/* App.css */
+.prohibited-date {
+  color: green; /* Change the color of prohibited dates */
+  /* Add any other styles you want */
+}

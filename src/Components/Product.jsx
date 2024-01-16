@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import NavBar from "../Nav";
 import "./ProductList.css"; // Import your CSS file
 
@@ -70,6 +71,9 @@ const ProductList = () => {
                     >
                       Delete
                     </button>
+                    <Link to={"/update/" + product._id}>
+                      <button className="btn m-2 btn-success">Update</button>
+                    </Link>
                   </td>
                 </tr>
               ))}

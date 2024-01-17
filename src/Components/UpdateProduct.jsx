@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import NavBar from "../Nav";
 
 function UpdateProduct() {
@@ -6,9 +7,43 @@ function UpdateProduct() {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [company, setCompany] = useState("");
-  const [error, setError] = useState(false); // Corrected initialization
+  const [error, setError] = useState(false);
+  const params = useParams();
 
-  const updateData = async (e) => {};
+  const updateData = async (e) => {
+    e.preventDefault();
+    console.warn(name, price, category, company);
+    // Add logic to send updated data to the server
+  };
+
+  useEffect(() => {
+    getProductDetails();
+  });
+
+  const getProductDetails = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/product/${params.id}`
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.warn(result);
+
+      // Update state with product details
+      setName(result.name);
+      setPrice(result.price);
+      setCategory(result.category);
+      setCompany(result.company);
+    } catch (error) {
+      console.error("Error fetching product details:", error.message);
+      // Handle error in the frontend (e.g., display an error message)
+      setError(true);
+    }
+  };
 
   return (
     <div>

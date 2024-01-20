@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import NavBar from "../Nav";
 
 function UpdateProduct() {
@@ -9,16 +9,36 @@ function UpdateProduct() {
   const [company, setCompany] = useState("");
   const [error, setError] = useState(false);
   const params = useParams();
-
+  const navigate = useNavigate();
   const updateData = async (e) => {
     e.preventDefault();
     console.warn(name, price, category, company);
-    // Add logic to send updated data to the server
+
+    try {
+      const result = await fetch(`http://localhost:5000/product/${params.id}`, {
+        method: "PUT", // Use 'PUT' instead of 'Put'
+        body: JSON.stringify({ name, price, category, company }),
+        headers: {
+          "Content-Type": "application/json", // Use 'application/json' instead of 'Application/json'
+        },
+      });
+
+      if (!result.ok) {
+        throw new Error(`HTTP error! Status: ${result.status}`);
+      } else {
+        navigate("/");
+      }
+
+      const data = await result.json(); // Corrected the typo here
+      console.warn(data);
+    } catch (error) {
+      console.error("Error updating product:", error.message);
+    }
   };
 
   useEffect(() => {
     getProductDetails();
-  });
+  }, []); // Added empty dependency array to ensure useEffect runs only once
 
   const getProductDetails = async () => {
     try {
